@@ -89,7 +89,7 @@ module Faye
       secure = if env.has_key?('HTTP_X_FORWARDED_PROTO')
                  env['HTTP_X_FORWARDED_PROTO'] == 'https'
                else
-                 env['HTTP_ORIGIN'] =~ /^https:/i
+                 env['rack.url_scheme'] == 'https'
                end
       
       scheme = secure ? 'wss:' : 'ws:'
